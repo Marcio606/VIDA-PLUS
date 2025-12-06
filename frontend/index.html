@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>VidaPlus — Protótipo</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>VidaPlus — Protótipo SGHSS</h1>
+    <p>Aluno: Marcio Machado Moreira — RU 4543545</p>
+  </header>
+
+  <nav class="nav">
+    <button id="nav-login">Login</button>
+    <button id="nav-cad">Cadastrar Paciente</button>
+    <button id="nav-agend">Agendar Consulta</button>
+    <button id="nav-list">Listar Pacientes</button>
+  </nav>
+
+  <main class="container">
+    <section id="view-login" class="view">
+      <h2>Login (simulado)</h2>
+      <form id="form-login">
+        <label>Usuário <input name="user"></label>
+        <label>Senha <input name="pass" type="password"></label>
+        <button type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <section id="view-cad" class="view hidden">
+      <h2>Cadastro de Paciente</h2>
+      <form id="form-paciente">
+        <label>Nome <input name="nome" required></label>
+        <label>CPF <input name="cpf" required></label>
+        <label>Email <input name="email" type="email"></label>
+        <label>Telefone <input name="telefone"></label>
+        <label>Endereço <input name="endereco"></label>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <pre id="cad-result"></pre>
+    </section>
+
+    <section id="view-agend" class="view hidden">
+      <h2>Agendamento de Consulta</h2>
+      <form id="form-agendamento">
+        <label>Paciente ID <input name="paciente_id" required></label>
+        <label>Profissional ID <input name="profissional_id"></label>
+        <label>Data e hora <input name="data_hora" type="datetime-local" required></label>
+        <label>Tipo <select name="tipo"><option>presencial</option><option>online</option></select></label>
+        <label>Descrição <textarea name="descricao"></textarea></label>
+        <button type="submit">Agendar</button>
+      </form>
+      <pre id="agend-result"></pre>
+    </section>
+
+    <section id="view-list" class="view hidden">
+      <h2>Pacientes</h2>
+      <ul id="pacientes-list"></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <small>Protótipo acadêmico — VidaPlus — Marcio Machado Moreira (RU 4543545)</small>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
