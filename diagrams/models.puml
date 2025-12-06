@@ -1,0 +1,35 @@
+@startuml
+' Diagrama de classes simples — VidaPlus
+class Paciente {
+  +id
+  +nome
+  +cpf
+  +email
+  +telefone
+}
+class Profissional {
+  +id
+  +nome
+  +crm
+  +especialidade
+}
+class Consulta {
+  +id
+  +data_hora
+  +tipo
+  +status
+}
+class Prontuario {
+  +id
+  +conteudo
+}
+class Receita {
+  +id
+  +texto
+}
+
+Paciente "1" -- "0..*" Consulta
+Profissional "1" -- "0..*" Consulta
+Paciente "1" -- "0..*" Prontuario
+Prontuario "1" -- "0..*" Receita
+@enduml
