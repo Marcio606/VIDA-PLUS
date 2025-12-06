@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+actor "Paciente" as Pac
+actor "Profissional" as Prof
+actor "Administrador" as Adm
+
+rectangle "SGHSS VidaPlus" {
+  Pac -- (Cadastrar\Paciente)
+  Pac -- (Agendar\Consulta)
+  Pac -- (Acessar\Teleconsulta)
+  Prof -- (Gerenciar\Agenda)
+  Prof -- (Atualizar\Prontuario)
+  Adm -- (Gerar\Relatórios)
+  Adm -- (Gerenciar\Cadastros)
+}
+@enduml
