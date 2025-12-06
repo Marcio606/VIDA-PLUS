@@ -2,7 +2,7 @@
 
 Autor: Marcio Machado Moreira — RU 4543545
 
-Objetivo
+## Objetivo
 Validar requisitos funcionais e não funcionais do protótipo.
 
 Casos de Teste Principais

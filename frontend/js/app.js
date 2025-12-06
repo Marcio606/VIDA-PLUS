@@ -13,33 +13,55 @@ function show(id){
 document.getElementById('form-paciente').onsubmit = async (e) => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(e.target).entries());
-  const res = await fetch(API_BASE + '/pacientes/', {
-    method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
-  });
-  const json = await res.json();
-  document.getElementById('cad-result').innerText = JSON.stringify(json, null, 2);
+  try {
+    const res = await fetch(API_BASE + '/pacientes/', {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const json = await res.json();
+    document.getElementById('cad-result').innerText = JSON.stringify(json, null, 2);
+  } catch (error) {
+    document.getElementById('cad-result').innerText = `Erro: ${error.message}`;
+  }
 };
 
 document.getElementById('form-agendamento').onsubmit = async (e) => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(e.target).entries());
-  const res = await fetch(API_BASE + '/consultas/', {
-    method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
-  });
-  const json = await res.json();
-  document.getElementById('agend-result').innerText = JSON.stringify(json, null, 2);
+  try {
+    const res = await fetch(API_BASE + '/consultas/', {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const json = await res.json();
+    document.getElementById('agend-result').innerText = JSON.stringify(json, null, 2);
+  } catch (error) {
+    document.getElementById('agend-result').innerText = `Erro: ${error.message}`;
+  }
 };
 
 async function fetchPacientes(){
-  const res = await fetch(API_BASE + '/pacientes/');
-  const list = await res.json();
-  const ul = document.getElementById('pacientes-list');
-  ul.innerHTML = '';
-  list.forEach(p => {
-    const li = document.createElement('li');
-    li.innerText = `${p.id} — ${p.nome} — ${p.cpf} — ${p.email || '-'} `;
-    ul.appendChild(li);
-  });
+  try {
+    const res = await fetch(API_BASE + '/pacientes/');
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const list = await res.json();
+    const ul = document.getElementById('pacientes-list');
+    ul.innerHTML = '';
+    list.forEach(p => {
+      const li = document.createElement('li');
+      li.innerText = `${p.id} — ${p.nome} — ${p.cpf} — ${p.email || '-'} `;
+      ul.appendChild(li);
+    });
+  } catch (error) {
+    const ul = document.getElementById('pacientes-list');
+    ul.innerHTML = `<li>Erro ao carregar pacientes: ${error.message}</li>`;
+  }
 }
 
 // inicial

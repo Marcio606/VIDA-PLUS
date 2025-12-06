@@ -59,4 +59,5 @@ app = create_app()
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Note: Debug mode is disabled for security. Use a production WSGI server for deployment.
+    app.run(host='0.0.0.0', port=5000, debug=False)

@@ -37,8 +37,8 @@ def criar_paciente():
     cpf = data.get('cpf')
     if not nome or not cpf:
         return jsonify({"error": "nome e cpf são obrigatórios"}), 400
-    existe = Paciente.query.filter_by(cpf=cpf).first()
-    if existe:
+    # Check if CPF already exists
+    if db.session.query(Paciente.query.filter_by(cpf=cpf).exists()).scalar():
         return jsonify({"error": "CPF já cadastrado"}), 400
     p = Paciente(
         nome=nome, cpf=cpf, email=data.get('email'),
